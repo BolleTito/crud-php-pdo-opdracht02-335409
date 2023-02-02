@@ -18,19 +18,17 @@ try {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+    // echo "skdf";exit();
     try {
         // Maak een update query voor het updaten van een record
-        $sql = "UPDATE Persoon
-                SET Voornaam = :Voornaam,
-                    Tussenvoegsel = :Tussenvoegsel,
-                    Achternaam = :Achternaam,
-                    Telefoonnummer = :Telefoonnummer,
-                    Straatnaam = :Straatnaam,
-                    Huisnummer = :Huisnummer,
-                    Woonplaats = :Woonplaats,
-                    Postcode = :Postcode,
-                    Landnaam = :Landnaam
+        $sql = "UPDATE Pizza
+                SET Bodemformaat = :Bodemformaat,
+                    Saus = :Saus,
+                    Pizzatoppings = :Pizzatoppings,
+                    Peterselie = :Peterselie,
+                    Oregano = :Oregano,
+                    Chiliflakes = :Chiliflakes,
+                    Zwartepeper = :Zwartepeper
                 WHERE Id = :Id";
 
         // Roep de prepare-method aan van het PDO-object $pdo
@@ -38,15 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // We moeten de placeholders een waarde geven in de sql-query
         $statement->bindValue(':Id', $_POST['Id'], PDO::PARAM_INT);
-        $statement->bindValue(':Voornaam', $_POST['firstname'], PDO::PARAM_STR);
-        $statement->bindValue(':Tussenvoegsel', $_POST['infix'], PDO::PARAM_STR);
-        $statement->bindValue(':Achternaam', $_POST['lastname'], PDO::PARAM_STR);
-        $statement->bindValue(':Telefoonnummer', $_POST['phonenumber'], PDO::PARAM_STR);
-        $statement->bindValue(':Straatnaam', $_POST['streetname'], PDO::PARAM_STR);
-        $statement->bindValue(':Huisnummer', $_POST['housenumber'], PDO::PARAM_STR);
-        $statement->bindValue(':Woonplaats', $_POST['residence'], PDO::PARAM_STR);
-        $statement->bindValue(':Postcode', $_POST['postalcode'], PDO::PARAM_STR);
-        $statement->bindValue(':Landnaam', $_POST['country'], PDO::PARAM_STR);
+        $statement->bindValue(':Bodemformaat', $_POST['bodem'], PDO::PARAM_STR);
+        $statement->bindValue(':Saus', $_POST['saus'], PDO::PARAM_STR);
+        $statement->bindValue(':Pizzatoppings', $_POST['pizzatoppings'], PDO::PARAM_STR);
+        $statement->bindValue(':Peterselie', $_POST['peterselie'], PDO::PARAM_STR);
+        $statement->bindValue(':Oregano', $_POST['oregano'], PDO::PARAM_STR);
+        $statement->bindValue(':Chiliflakes', $_POST['chiliflakes'], PDO::PARAM_STR);
+        $statement->bindValue(':Zwartepeper', $_POST['zwartepeper'], PDO::PARAM_STR);
 
         // We gaan de query uitvoeren op de mysql-server
         $statement->execute();
@@ -62,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 // Maak een select-query
-$sql = "SELECT * FROM Persoon 
+$sql = "SELECT * FROM Pizza 
         WHERE Id = :Id";
 
 // Voorbereiden van de query
@@ -91,32 +87,27 @@ $result = $statement->fetch(PDO::FETCH_OBJ);
     <h1>PDO CRUD</h1>
 
     <form action="update.php" method="post">
-        <label for="firstname">Voornaam:</label><br>
-        <input type="text" name="firstname" id="firstname" value="<?php echo $result->Voornaam; ?>"><br>
 
-        <label for="infix">Tussenvoegsel:</label><br>
-        <input type="text" name="infix" id="infix" value="<?php echo $result->Tussenvoegsel; ?>"><br>
+        <label for="bodem">Bodemformaat:</label><br>
+        <input type="text" name="bodem" id="bodem" value="<?php echo $result->Bodemformaat; ?>"><br><br>
 
-        <label for="lastname">Achternaam:</label><br>
-        <input type="text" name="lastname" id="lastname" value="<?php echo $result->Achternaam; ?>"><br>
+        <label for="saus">Saus:</label><br>
+        <input type="text" name="saus" id="saus" value="<?php echo $result->Saus; ?>"><br><br>
 
-        <label for="phonenumber">Telefoonnummer:</label><br>
-        <input type="text" name="phonenumber" id="phonenumber" value="<?php echo $result->Telefoonnummer; ?>"><br>
+        <label for="">Pizzatoppings:</label><br>
+        <input type="radio" name="pizzatoppings" id="" value="<?php echo $result->Pizzatoppings; ?>"><br><br>
 
-        <label for="streetname">Straatnaam:</label><br>
-        <input type="text" name="streetname" id="streetname" value="<?php echo $result->Straatnaam; ?>"><br>
+        <label for="peterselie">Peterselie:</label><br>
+        <input type="checkbox" name="peterselie" id="peterselie" value="<?php echo $result->Peterselie; ?>"><br><br>
 
-        <label for="housenumber">Huisnummer:</label><br>
-        <input type="text" name="housenumber" id="housenumber" value="<?php echo $result->Huisnummer; ?>"><br>
+        <label for="oregano">Oregano:</label><br>
+        <input type="checkbox" name="oregano" id="oregano" value="<?php echo $result->Oregano; ?>"><br><br>
 
-        <label for="residence">Woonplaats:</label><br>
-        <input type="text" name="residence" id="residence" value="<?php echo $result->Woonplaats; ?>"><br>
-
-        <label for="postalcode">Postcode:</label><br>
-        <input type="text" name="postalcode" id="postalcode" value="<?php echo $result->Postcode; ?>"><br>
-
-        <label for="country">Landnaam:</label><br>
-        <input type="text" name="country" id="country" value="<?php echo $result->Landnaam; ?>"><br>
+        <label for="chilipeper">Chilipeper:</label><br>
+        <input type="checkbox" name="chilipeper" id="chilipeper" value="<?php echo $result->Chiliflakes; ?>"><br><br>
+        
+        <label for="zwartepeper">Zwartepeper:</label><br>
+        <input type="checkbox" name="zwartepeper" id="zwartepeper" value="<?php echo $result->Zwartepeper; ?>"><br><br>
 
         <input type="hidden" name="Id" value="<?php echo $result->Id; ?>">
 
