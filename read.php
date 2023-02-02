@@ -22,16 +22,14 @@ try {
  */
 
 $sql = "SELECT Id
-              ,Voornaam
-              ,Tussenvoegsel
-              ,Achternaam
-              ,Telefoonnummer
-              ,Straatnaam
-              ,Huisnummer
-              ,Woonplaats
-              ,Postcode
-              ,Landnaam
-        FROM Persoon";
+              ,Bodemformaat
+              ,Saus
+              ,Pizzatoppings
+              ,Peterselie
+              ,Oregano
+              ,Chiliflakes
+              ,Zwartepeper
+        FROM Pizza";
 
 //Bereid de de query voor met de method prepare
 $statement = $pdo->prepare($sql);
@@ -47,15 +45,13 @@ $tableRows = "";
 
 foreach($result as $info) {
     $tableRows .= "<tr>
-                        <td>$info->Voornaam</td>
-                        <td>$info->Tussenvoegsel</td>
-                        <td>$info->Achternaam</td>
-                        <td>$info->Telefoonnummer</td>
-                        <td>$info->Straatnaam</td>
-                        <td>$info->Huisnummer</td>
-                        <td>$info->Woonplaats</td>
-                        <td>$info->Postcode</td>
-                        <td>$info->Landnaam</td>
+                        <td>$info->Bodemformaat</td>
+                        <td>$info->Saus</td>
+                        <td>$info->Pizzatoppings</td>
+                        <td>$info->Peterselie</td>
+                        <td>$info->Oregano</td>
+                        <td>$info->Chiliflakes</td>
+                        <td>$info->Zwartepeper</td>
                         <td>
                             <a href='delete.php?Id=$info->Id'>
                                 <img src='img/b_drop.png' alt='cross'>
@@ -69,24 +65,24 @@ foreach($result as $info) {
                    </tr>";
 }
 ?>
-<h3>Persoonsgegevens</h3>
+<h3>Pizza</h3>
 
 <a href="index.php">
-    <input type="button" value="Maak een nieuw record">
+    <input type="button" value="Maak een ander pizza">
 </a>
 
 <br><br>
 <table border='1'>
     <thead>
-        <th>Voornaam</th>
-        <th>Tussenvoegsel</th>
-        <th>Achternaam</th>
-        <th>Telefoonnummer</th>
-        <th>Straatnaam</th>
-        <th>Huisnummer</th>
-        <th>Woonplaats</th>
-        <th>Postcode</th>
-        <th>Landnaam</th>
+        <th>Bodemformaat</th>
+        <th>Saus</th>
+        <th>Pizzatoppings</th>
+        <th>Peterselie</th>
+        <th>Oregano</th>
+        <th>Chiliflakes</th>
+        <th>Zwartepeper</th>
+        <th></th>
+        <th></th>
     </thead>
     <tbody>
         <?php echo $tableRows; ?>
