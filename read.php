@@ -29,7 +29,7 @@ $sql = "SELECT Id
               ,Oregano
               ,Chiliflakes
               ,Zwartepeper
-        FROM Pizza";
+        FROM pizza";
 
 //Bereid de de query voor met de method prepare
 $statement = $pdo->prepare($sql);

@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // echo "skdf";exit();
     try {
         // Maak een update query voor het updaten van een record
-        $sql = "UPDATE Pizza
+        $sql = "UPDATE pizza
                 SET Bodemformaat = :Bodemformaat,
                     Saus = :Saus,
                     Pizzatoppings = :Pizzatoppings,
