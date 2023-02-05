@@ -18,7 +18,7 @@ try {
 }
 
 // Maak een sql-query die het record gaat verwijderen uit de database
-$sql = "DELETE FROM Pizza
+$sql = "DELETE FROM pizza
         WHERE Id = :Id;";
 
 // We prepareren de query zodat we de waarde van Id kunnen koppelen aan placeholder :Id
